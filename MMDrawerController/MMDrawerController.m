@@ -39,8 +39,6 @@ CGFloat const MMDrawerDefaultShadowOpacity = 0.8;
 
 NSTimeInterval const MMDrawerMinimumAnimationDuration = 0.15f;
 
-CGFloat const MMDrawerBezelRange = 20.0f;
-
 CGFloat const MMDrawerPanVelocityXAnimationThreshold = 200.0f;
 
 /** The amount of overshoot that is panned linearly. The remaining percentage nonlinearly asymptotes to the max percentage. */
@@ -198,8 +196,12 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     [self setShadowOffset:CGSizeMake(0, -3)];
     [self setShadowColor:[UIColor blackColor]];
     
+    int screenWidthPercentage = 25;
+    int screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int bezelAmount = screenWidth * screenWidthPercentage / 100;
+    
     // set default bezel range for panGestureReconizer
-    [self setBezelPanningCenterViewRange:MMDrawerBezelRange];
+    [self setBezelPanningCenterViewRange:bezelAmount];
     
     // set defualt panVelocityXAnimationThreshold
     [self setPanVelocityXAnimationThreshold:MMDrawerPanVelocityXAnimationThreshold];
