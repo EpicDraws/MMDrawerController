@@ -196,8 +196,15 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     [self setShadowOffset:CGSizeMake(0, -3)];
     [self setShadowColor:[UIColor blackColor]];
     
-    int screenWidthPercentage = 25;
     int screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int screenWidthPercentage = 25;
+    
+    if(screenWidth == 414) { // iPhone 6/6S+
+        screenWidthPercentage = 23;
+    } else if(screenWidth == 320) { // iPhone 4S/5/5S/5C/6SE, iPad Slideover
+        screenWidthPercentage = 20;
+    }
+    
     int bezelAmount = screenWidth * screenWidthPercentage / 100;
     
     // set default bezel range for panGestureReconizer
